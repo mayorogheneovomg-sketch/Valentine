@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Maryam 💖</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffc4d6, #fff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      z-index: 10;
+      position: relative;
+    }
+
+    h2 { color: #ff3b7d; }
+
+    button {
+      padding: 12px 24px;
+      margin: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #yes { background: #ff3b7d; color: white; }
+    #no { background: #ddd; position: relative; }
+
+    /* Hearts container */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 32 29.6" xmlns="http://www.w3.org/2000/svg"><path fill="%23ff3b7d" d="M23.6,0c-2.9,0-5.6,1.5-7.6,3.9C13.9,1.5,11.2,0,8.4,0C3.8,0,0,3.8,0,8.4c0,4.5,3.2,8.2,8.1,13.1c2.8,2.8,5.8,5.5,7.9,8.2c2.1-2.7,5.1-5.4,7.9-8.2C28.8,16.6,32,12.9,32,8.4C32,3.8,28.2,0,23.6,0z"/></svg>') no-repeat center center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="page1">
+  <h2>Maryam 💖</h2>
+  <p>From the moment you opened this, the answer was already written.</p>
+  <p>Will you be my Valentine?</p>
+  <button id="yes">YES</button>
+  <button id="no">NO</button>
+</div>
+
+<div class="card" id="page2" style="display:none;">
+  <h2>Maryam said YES 💖🥹</h2>
+  <p>Screenshot this 😌</p>
+  <p>You’re officially my Valentine 💘</p>
+</div>
+
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+
+  // NO button runs away
+  noBtn.addEventListener("mouseover", () => {
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random() * 70 + "%";
+    noBtn.style.top = Math.random() * 70 + "%";
+  });
+
+  // YES button
+  yesBtn.addEventListener("click", () => {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+  });
+
+  // Heart animation
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.animation = `float ${4 + Math.random() * 3}s linear forwards`;
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }
+
+  setInterval(createHeart, 500);
+
+</script>
+
+<style>
+@keyframes float {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-700px) scale(1.5); opacity: 0; }
+}
+</style>
+
+</body>
+</html>
